@@ -10,10 +10,10 @@ public class HibernateUtil {
 
     static {
         final StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder() // содержит сервисы нужные Hibernate
-                .configure("ru/olegproj/training/hibernate.cfg.xml")                          // ипи выполнении и загрузке
+                .configure()                          // ипи выполнении и загрузке
                 .build();
         try {
-            SessionFactory sessionFactory = new MetadataSources(standardRegistry) // настраивает связь
+            sessionFactory = new MetadataSources(standardRegistry) // настраивает связь
                     .buildMetadata()                                              // между классами и бд
                     .buildSessionFactory();
         } catch (Exception e) {
