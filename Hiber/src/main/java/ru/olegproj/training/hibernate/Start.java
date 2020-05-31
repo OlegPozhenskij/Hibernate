@@ -5,7 +5,7 @@ import ru.olegproj.training.hibernate.entity.Author;
 
 public class Start {
     public static void main(String[] args) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Session session = HibernateUtil.getSessionFactory().openSession(); //тестовое открытие сессии
 
         for(Author author : new AuthorHelper().getAuthorList()) {
             System.out.println("Author = " + author.getName());

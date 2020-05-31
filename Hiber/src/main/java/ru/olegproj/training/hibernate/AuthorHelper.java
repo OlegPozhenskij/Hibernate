@@ -18,26 +18,20 @@ public class AuthorHelper {
     }
 
     public List<Author> getAuthorList() {
-        //открываем сессию для манипуляции с persistent objects
-        Session session = sessionFactory.openSession();
-        session.get(Author.class, 1L); //получение объекта по id (Autor - таблица)
-
-
         //подготовка запроса
-        //объект-конструктор запросов для Criteria API
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery cq = cb.createQuery(Author.class); // с помощью cq мы формеруем запрос
-        Root<Author> root = cq.from(Author.class);// Какая основная таблица будет - Author
-        cq.select(root); //взять все записи рута
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder(); //строитель зпросов
+        CriteriaQuery<Author> cr = cb.createQuery(Author.class); // создание запроса
+        Root<Author> root = cr.from(Author.class); // from - в sql
 
+        //объект-конструктор запросов для Criteria API
+        cr.select(root).where(cb.like(root.get("name"), "Sam")); //условие
 
         //выполнение запроса
-        Query query = session.createQuery(cq);
-        List<Author> authors = query.getResultList();
-
+        List<Author> results = session.createQuery(cr).getResultList();
 
         //закрытие сессии
         session.close();
-        return authors;
+        return results;
     }
 }
