@@ -1,4 +1,4 @@
-package ru.olegproj.training.hibernate;
+package ru.olegproj.training.hibernate.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -14,7 +14,7 @@ public class HibernateUtil {
                 .build();
         try {
             sessionFactory = new MetadataSources(standardRegistry) // настраивает связь
-                    .buildMetadata()                                              // между классами и бд
+                    .buildMetadata()                               // между классами и бд
                     .buildSessionFactory();
         } catch (Exception e) {
             StandardServiceRegistryBuilder.destroy(standardRegistry);

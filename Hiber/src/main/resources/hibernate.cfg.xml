@@ -7,20 +7,24 @@
 
 
     <property name="connection.url">jdbc:mysql://localhost:3306/testhibernate?useSSL=false&amp;serverTimezone=UTC</property>
+
     <property name="connection.username">root</property>
     <property name="connection.password">password</property>
 
     <property name="hibernate.connection.characterEncoding">utf8</property>
 
-    <property name="show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
 
+    <property name="show_sql">true</property>
     <property name="default_schema">testhibernate</property>
 
-    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="generate_statistics">true</property>
 
-    <mapping class="ru.olegproj.training.hibernate.entity.Author"/>
-    <mapping class="ru.olegproj.training.hibernate.entity.Book"/>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
+    <mapping class="ru.olegproj.training.hibernate.model.AuthorEntity"/>
+    <mapping class="ru.olegproj.training.hibernate.model.BookEntity"/>
 
 
   </session-factory>
