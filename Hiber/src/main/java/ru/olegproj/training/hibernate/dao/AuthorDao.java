@@ -26,6 +26,13 @@ public class AuthorDao {
         CriteriaQuery<AuthorEntity> cq = cb.createQuery(AuthorEntity.class); // создание запроса
         Root<AuthorEntity> root = cq.from(AuthorEntity.class); // from <Author.class> - в sql
 
+        //одно изрешений проблемы N+1, дело в том, что что без inner join
+        //одному автору каждый раз нужно будет отправлять запрос в bd и
+        //получать книгу по отдельности
+
+        //мы решаем проблему тем, что используем только 1 большой запрос
+        //с inner join, который сокраает время на выполнение в 2 и больше раз!
+        root.fetch("books", JoinType.INNER);
 
 //        Selection[] selections = {root.get(AuthorEntity_.id), root.get(AuthorEntity_.name)}; //  select {параметры после select} from
 
